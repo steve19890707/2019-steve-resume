@@ -241,7 +241,7 @@ var resumePage = new Vue({
         }
     },
     mounted: function(){
-        this.open;
+        this.open();
     },
     methods: {
         open: function(){

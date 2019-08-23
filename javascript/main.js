@@ -241,9 +241,12 @@ var resumePage = new Vue({
         }
     },
     mounted: function(){
-        this.isloading = false;
+        this.open;
     },
     methods: {
+        open: function(){
+            this.isloading = false;
+        },
         NextMove: function(status1,status2,status3,status4){
             this.status.introduction = status1;
             this.status.pInformation = status2;

@@ -341,7 +341,7 @@ body {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: url(/images/selfie-mobile.jpg)no-repeat 55%;
+    background: url(../images/selfie-mobile.jpg)no-repeat 55%;
     background-size: cover;
     animation: fadeIn 1s;
     &.active {

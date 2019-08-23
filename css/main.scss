@@ -1,0 +1,1640 @@
+/*----------- reset start -----------*/
+body, div, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0;
+}
+:focus {
+    outline: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+input, button, textarea, select, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    border: 0;
+}
+ol, ul, li {
+    list-style: none;
+    border: 0;
+}
+:link, :visited, ins {
+    text-decoration: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+section, article, aside, footer, header, nav, main, table, tbody {
+    display: block;
+}
+a, a:visited, a:hover, a:active, a:focus {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+a {
+    display: block;
+}
+*:focus, a:focus {
+    outline: none;
+}
+html {
+    font-family: Microsoft JhengHei;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+    background: #2a2d32;
+}
+@media (min-width:768px){
+    html {
+        font-size: 24px;
+    }
+}
+@media (min-width:1024px){
+    html {
+        font-size: 20px;
+    }
+}
+button {
+    font-family: Microsoft JhengHei;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+@font-face {
+    font-family: Consolas;
+    src:url('/images/Consolas.ttf');
+}
+@font-face {
+    font-family: MinionCondensed;
+    src:url('/images/MinionCondensed.otf');
+}
+// animation
+@keyframes flashBar{
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+@keyframes leftIn {
+    0%{transform: translateX(-100%);}
+    100%{transform: translateX(0%);}
+}
+@keyframes leftOut{
+    0%{transform: translateX(0%);}
+    100%{transform: translateX(-100%);}
+}
+@keyframes rightIn {
+    0%{transform: translateX(100%);}
+    100%{transform: translateX(0%);}
+}
+@keyframes fadeIn {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+@keyframes scaleIn {
+    0% {transform: translate(-50%,-50%)scale(0,0)}
+    100% {transform: translate(-50%,-50%)scale(1,1)}
+}
+@keyframes gameIn-A {
+    0% {transform: translateX(-100%)rotate(-45deg)}
+    100% {transform: translateX(0%)rotate(0deg)}
+}
+@keyframes gameIn-B {
+    0% {transform: translateX(100%)rotate(45deg)}
+    100% {transform: translateX(0%)rotate(0deg)}
+}
+.flashBar {
+    animation: flashBar 1s infinite linear;
+}
+body {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: rgba(#000,0.2);
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image:linear-gradient(to right,#949494,#d2d2d2); 
+    }
+}
+// loading
+.lodingPage {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #20252b;
+    z-index: 100;
+    .lp-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        .title {
+            color: #fff;
+            font-family: MinionCondensed;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        .loading {
+            color: #9c9c9c;
+            font-family: Microsoft JhengHei;
+            font-size: 1rem;
+        }
+    }
+    &.active {
+        display: block;
+    }
+}
+// header
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #363b40;
+    z-index: 99;
+    box-shadow: 0 0 5px rgba(#000,0.3);
+    .wrap {
+        position: relative;
+        width: 90%;
+        height: 50px;
+        margin: 0 auto;
+    }
+    .title {
+        position: absolute;
+        font-size: 1.2rem;
+        color: #fff;
+        font-family: MinionCondensed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+    .svg-hamburger {
+        position: absolute;
+        width: 1.4rem;
+        height: 1.4rem;
+        fill: #fff;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+    .for-web {
+        display: none;
+    }
+    .aside {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        animation: fadeIn 0.5s;
+        &.active {
+            display: block;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(#000,0.6);
+            z-index: 1;
+        }
+        .aside-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100vh;
+            background: #2a2d32;
+            box-sizing: border-box;
+            padding: 5% 0 0 5%;
+            animation: rightIn 1s;
+            z-index: 2;
+            .aside-listStyle {
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: 20px;
+                .svg-gear {
+                    fill: #cccccc;
+                    width: 1.3rem;
+                    height: 1.3rem;
+                    margin-right: 10px;
+                }
+                .text {
+                    color: #cccccc;
+                    font-size: 1.2rem;
+                    font-family: MinionCondensed;
+                }
+                &.color {
+                    .svg-gear {
+                        fill: #1ab595;
+                    }
+                    .text {
+                        color: #1ab595;
+                    }
+                }
+                .github {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon {
+                        width: 30px;
+                        height: 30px;
+                        background: url(../images/skilled-assist.png)no-repeat;
+                        background-size: 100%;
+                        background-color: #fff;
+                        background-position-y: (3/4)*100%;
+                        border-radius: 50%;
+                        margin-right: 10px;
+                    }
+                    .text {
+                        font-family: 'Consolas';
+                        color: #cccccc;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:768px){
+    .header {
+        .wrap {
+            height: 75px;
+        }
+        .aside{
+            .aside-content {
+                width: 50%;
+            }
+        }
+    }
+}
+@media screen and (min-width:1024px){
+    .header {
+        .wrap {
+            min-width: calc(1024px - 10%);
+            max-width: 1200px;
+        }
+        .svg-hamburger {
+            display: none;
+        }
+        .for-web {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            align-items: center;
+            .text-style {
+                color: #cccccc;
+                font-size: 0.8rem;
+                font-family: MinionCondensed;
+                margin-right: 20px;
+                transition: 0.3s;
+                cursor: pointer;
+                &:last-child {
+                    margin-right: 0;
+                }
+                &:hover {
+                    color: #fff;
+                }
+                &.color {
+                    color: #1ab595;
+                    &:hover {
+                        color: #1ab595;
+                    }
+                }
+                .githubIcon {
+                    opacity: 0.8;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    background: url(../images/skilled-assist.png)no-repeat;
+                    background-size: 100%;
+                    background-color: #fff;
+                    background-position-y: (3/4)*100%;
+                    transition: 0.3s;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+// introduction
+.introduction {
+    display: none;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url(/images/selfie-mobile.jpg)no-repeat 55%;
+    background-size: cover;
+    animation: fadeIn 1s;
+    &.active {
+        display: block;
+    }
+    .wrap {
+        position: relative;
+        width: 100%;
+    }
+    .next {
+        position: absolute;
+        top: 65px;
+        right: 5%;
+        color: #fff;
+        font-family: 'Consolas';
+        font-size: 1rem;
+        border-radius: 50px;
+        padding: 0.4rem 0.6rem;
+        background: linear-gradient(to top,#f13124,#fbb03b);
+        box-shadow: 0 0 5px rgba(#000,0.3);
+    }
+    .content {
+        width: 60%;
+        height: 100vh;
+        overflow: auto;
+        background: rgba(#2a2d32,0.8);
+        padding: 75px 5% 5% 5%;
+        box-sizing: border-box;
+        animation: leftIn 1s;
+        .article {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            .svg-triangle {
+                width: 1rem;
+                height: 1rem;
+                fill: #c59f23;
+                margin-right: 0.5rem;
+            }
+            span {
+                font-family: 'Consolas';
+                color: #c59f23;
+                font-size: 1rem;
+                text-shadow: 0 0 5px rgba(#000,0.3);
+                &.flashBar {
+                    color: #fff;
+                }
+            }
+            &.end {
+                margin-bottom: 0;
+                margin-top: 2rem;
+                .svg-triangle {
+                    margin-right: 0;
+                    margin-left: 0.5rem;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .section {
+            .text {
+                color: #adadad;
+                font-size: 0.8rem;
+                line-height: 1.5;
+                text-shadow: 0 0 5px rgba(#000,0.3);
+            }
+            .tag {
+                padding: 0.3rem 0;
+                font-family: 'Consolas';
+                color: #1ab595;
+                font-size: 0.9rem;
+                text-shadow: 0 0 5px rgba(#000,0.3);
+            }
+        }
+    }
+}
+@media screen and (min-width:768px){
+    .introduction {
+        .next {
+            top: 95px;
+        }
+        .content {
+            padding: 105px 5% 5% 5%;
+            &::-webkit-scrollbar {
+                width: 10px;
+                background-color: rgba(#000,0.2);
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-image:linear-gradient(to right,#949494,#d2d2d2); 
+            }
+        }
+    }
+}
+@media screen and (min-width:1024px){
+    .introduction {
+        background: url(../images/web-background.jpg)no-repeat;
+        background-size: cover;
+        .next {
+            cursor: pointer;
+            &:hover {
+                background: linear-gradient(to bottom,#f13124,#fbb03b);
+            }
+        }
+        .wrap {
+            min-width: 1024px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    }
+}
+.p-information {
+    display: none;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #2a2d32;
+    box-sizing: border-box;
+    padding-top: 65px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s;
+    &.active {
+        display: block;
+    }
+    .wrap {
+        position: relative;
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+    }
+    .page-change {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .next , .prev{
+            color: #fff;
+            font-family: 'Consolas';
+            font-size: 1rem;
+            border-radius: 50px;
+            padding: 0.4rem 0.6rem;
+            background: linear-gradient(to top,#0d944a,#8cc63f);
+            box-shadow: 0 0 5px rgba(#000,0.3);
+        }
+    }
+    .title {
+        font-family: 'Consolas';
+        font-size: 1.2rem;
+        color: #8cc63f;
+        padding-top: 20px;
+    }
+    .info-content {
+        position: relative;
+        background: #20252b;
+        padding: 10px;
+        width: 100%;
+        margin-top: 10px;
+        box-sizing: border-box;
+        .list-style {
+            font-size: 0;
+            line-height: 1.5;
+            span {
+                font-size: 1rem;
+                font-family: 'Consolas';
+            }
+            .mandarin {
+                font-family: 'Microsoft JhengHei';
+            }
+            .gray {
+                color: #999999;
+            }
+            .blue {
+                color: #29abe2;
+            }
+            .white {
+                color: #fff;
+            }
+            .orange {
+                color: #f7931e;
+            }
+        }
+        .selfie-web {
+            display: none;
+        }
+    }
+    .info-content2 {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 0;
+        line-height: 1.5;
+        .two-title {
+            display: inline-block;
+            span {
+                font-size: 1.2rem;
+                font-family: 'Consolas';
+            }
+            .gray {
+                color: #999999;
+            }
+            .pink {
+                color: #ff83c6;
+                padding-right:5px;
+            }
+            .yellow {
+                color: #ddca7e;
+                padding-right:5px;
+            }
+            .etc {
+                font-size: 1rem;
+            }
+        }
+        .two-text {
+            display: none;
+            padding-left: 15px;
+            box-sizing: border-box;
+            span {
+                font-size: 1rem;
+                font-family: 'Consolas';
+            }
+            .mandarin {
+                font-family: 'Microsoft JhengHei';
+            }
+            .blue {
+                color: #29abe2;
+            }
+            .gray {
+                color: #999999;
+            }
+            .pink {
+                color: #ff83c6;
+            }
+            .yellow {
+                color: #ddca7e;
+            }
+            a {
+                font-size: 0;
+            }
+        }
+        &.active {
+            .two-title {
+                .etc {
+                    display: none;
+                }
+            }
+            .two-text {
+                display: block;
+            }
+        }
+    }
+}
+@media screen and (min-width:768px){
+    .p-information {
+        padding-top: 95px;
+        .info-content {
+            .selfie-web {
+                position: absolute;
+                display: block;
+                width: 200px;
+                height: 200px;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                background: url(../images/selfie-web.jpg)no-repeat;
+                background-size: 100%;
+            }
+        }
+    }
+}
+@media screen and (min-width:1024px){
+    .p-information {
+        margin-bottom: 0px;
+        .page-change {
+            .next , .prev{
+                cursor: pointer;
+                &:hover {
+                    background: linear-gradient(to bottom,#0d944a,#8cc63f);
+                }
+            }
+        }
+        .info-content {
+            padding: 20px;
+            .selfie-web {
+                right: 10px;
+            }
+        }
+        .info-content2 {
+            margin-top: 15px;
+            .click {
+                cursor: pointer;
+            }
+            .two-text {
+                a {
+                    display: inline-block;
+                    font-size: 1rem;
+                    color: #1ab595;
+                    margin-left: 10px;
+                    transition: 0.3s;
+                    cursor: pointer;
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1200px){
+    .p-information {
+        .wrap {
+            min-width: 1024px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+    }
+}
+// skilled
+.skilled {
+    display: none;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #2a2d32;
+    box-sizing: border-box;
+    padding-top: 65px;
+    animation: fadeIn 1s;
+    &.active {
+        display: block;
+    }
+    .wrap {
+        position: relative;
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+    }
+    .page-change {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .next , .prev{
+            color: #fff;
+            font-family: 'Consolas';
+            font-size: 1rem;
+            border-radius: 50px;
+            padding: 0.4rem 0.6rem;
+            background: linear-gradient(to top,#0d944a,#8cc63f);
+            box-shadow: 0 0 5px rgba(#000,0.3);
+        }
+    }
+    .title {
+        font-family: 'Consolas';
+        font-size: 1.2rem;
+        color: #8cc63f;
+        padding-top: 20px;
+    }
+    .style-mobile {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 20px;
+        .list-style {
+            width: 33.3333%;
+            .box {
+                position: relative;
+                width: 80%;
+                margin: 0 auto;
+                padding-bottom: 80%;
+                background: linear-gradient(45deg,#29abe2,#1b1464,#662d91);
+                border-radius: 10px;
+                box-sizing: border-box;
+                border: 1px solid #fff;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: url(../images/skilled.png)no-repeat;
+                    background-size: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 1rem;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50px;
+                    line-height: 24px;
+                    background: #ed1c24;
+                    z-index: 2;
+                    top: 0;
+                    right: 0;
+                    transform: translate(50%,-50%);
+                }
+                &.html {
+                    &:after {
+                        content: unset;
+                    }
+                }
+                &.css {
+                    &:before {
+                        background-position-y: (1/6)*100%;
+                    }
+                    &:after {
+                        content: '2';
+                    }
+                }
+                &.javascript {
+                    &:before {
+                        background-position-y: (2/6)*100%;
+                    }
+                    &:after {
+                        content: '8';
+                    }
+                }
+                &.uiux {
+                    &:before {
+                        background-position-y: (3/6)*100%;
+                    }
+                    &:after {
+                        content: '3';
+                    }
+                }
+                &.webGraphic {
+                    &:before {
+                        background-position-y: (4/6)*100%;
+                    }
+                    &:after {
+                        content: '2';
+                    }
+                }
+                &.mediaEdit {
+                    &:before {
+                        background-position-y: (5/6)*100%;
+                    }
+                    &:after {
+                        content: '3';
+                    }
+                }
+                &.assist {
+                    &:before {
+                        background-position-y: (6/6)*100%;
+                    }
+                    &:after {
+                        content: '5';
+                    }
+                }
+            }
+            .text {
+                font-size: 1rem;
+                font-family: 'Consolas';
+                text-align: center;
+                color: #6bcff2;
+                margin: 10px 0 15px 0;
+            }
+        }
+    }
+    .style-web { display: none;}
+    .inside-content {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(#000,0.6);
+        top: 0;
+        z-index: 98;
+        .container {
+            position: absolute;
+            width: 80%;
+            background: rgba(#4d4d4d,0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            animation: scaleIn 0.3s;
+            .title-bar {
+                position: relative;
+                background: #20252b;
+                text-align: center;
+                color: #fff;
+                font-size: 1.2rem;
+                font-family: 'Consolas';
+                padding: 6px 0;
+                .close {
+                    position: absolute;
+                    top: 50%;
+                    left: 10px;
+                    transform: translateY(-50%);
+                    width: 15px;
+                    height: 15px;
+                    background: #ed1c24;
+                    border-radius: 50%;
+                }
+            }
+            .inside-all {
+                width: 100%;
+                height: 65vh;
+                overflow: auto;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-content:flex-start;
+                margin-top: 20px;
+                .inside-list {
+                    width: 33.3333%;
+                    .box {
+                        position: relative;
+                        width: 80%;
+                        margin: 0 auto;
+                        padding-bottom: 80%;
+                        background: linear-gradient(45deg,#9a9a9a,#fff,#dadada);
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        overflow: hidden;
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                        }
+                        &.photoshop {
+                            &:before {
+                                background: url(../images/skilled-uiux.png)no-repeat;
+                                background-size: 100%;
+                            }
+                        }
+                        &.illustrator {
+                            &:before {
+                                background: url(../images/skilled-uiux.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (1/2)*100%;
+                            }
+                        }
+                        &.rwd {
+                            &:before {
+                                background: url(../images/skilled-uiux.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: 100%;
+                            }
+                        }
+                        &.sass {
+                            &:before {
+                                background: url(../images/skilled-css.png)no-repeat;
+                                background-size: 100%;
+                            }
+                        }
+                        &.bootstrap {
+                            &:before {
+                                background: url(../images/skilled-css.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: 100%;
+                            }
+                        }
+                        &.svg {
+                            &:before {
+                                background: url(../images/skilled-webGraphic.png)no-repeat;
+                                background-size: 100%;
+                            }
+                        }
+                        &.canvas {
+                            &:before {
+                                background: url(../images/skilled-webGraphic.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: 100%;
+                            }
+                        }
+                        &.jquery {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                            }
+                        }
+                        &.ajax {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (1/7)*100%;
+                            }
+                        }
+                        &.vue {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (2/7)*100%;
+                            }
+                        }
+                        &.angular {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (3/7)*100%;
+                            }
+                        }
+                        &.threeJs {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (4/7)*100%;
+                            }
+                        }
+                        &.createJs {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (5/7)*100%;
+                            }
+                        }
+                        &.tweenmax {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (6/7)*100%;
+                            }
+                        }
+                        &.pixijs {
+                            &:before {
+                                background: url(../images/skilled-javascript.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (7/7)*100%;
+                            }
+                        }
+                        &.premiere {
+                            &:before {
+                                background: url(../images/skilled-mediaEdit.png)no-repeat;
+                                background-size: 100%;
+                            }
+                        }
+                        &.Aeffect {
+                            &:before {
+                                background: url(../images/skilled-mediaEdit.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (1/2)*100%;
+                            }
+                        }
+                        &.animate {
+                            &:before {
+                                background: url(../images/skilled-mediaEdit.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (2/2)*100%;
+                            }
+                        }
+                        &.terminal {
+                            &:before {
+                                background: url(../images/skilled-assist.png)no-repeat;
+                                background-size: 100%;
+                            }
+                        }
+                        &.vscode {
+                            &:before {
+                                background: url(../images/skilled-assist.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (1/4)*100%;
+                            }
+                        }
+                        &.npm {
+                            &:before {
+                                background: url(../images/skilled-assist.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (2/4)*100%;
+                            }
+                        }
+                        &.gitHub {
+                            &:before {
+                                background: url(../images/skilled-assist.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (3/4)*100%;
+                            }
+                        }
+                        &.gitLab {
+                            &:before {
+                                background: url(../images/skilled-assist.png)no-repeat;
+                                background-size: 100%;
+                                background-position-y: (4/4)*100%;
+                            }
+                        }
+                    }
+                    .text {
+                        font-size: 1rem;
+                        font-family: 'Consolas';
+                        text-align: center;
+                        color: #fff;
+                        margin: 10px 0 15px 0;
+                    }
+                }
+            }
+        }
+        &.active {
+            display: block;
+        }
+    }
+}
+@media screen and (min-width:768px){
+    .skilled {
+        padding-top: 95px;
+        .style-mobile {
+            margin-top: 30px;
+            .list-style {
+                .box {
+                    width: 70%;
+                    padding-bottom: 70%;
+                    &:after {
+                        width: 36px;
+                        height: 36px;
+                        line-height: 34px;
+                    }
+                }
+                .text {
+                    margin: 15px 0 20px 0;
+                }
+            }
+        }
+        .inside-content {
+            .container {
+                .title-bar {
+                    padding: 15px 0;
+                    .close {
+                        left: 20px;
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+                .inside-all {
+                    margin-top: 30px;
+                    .inside-list {
+                        .box {
+                            width: 70%;
+                            padding-bottom: 70%;
+                        }
+                        .text {
+                            margin: 15px 0 20px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1024px){
+    .skilled {
+        .style-mobile {display: none;}
+        .page-change {
+            .next , .prev{
+                cursor: pointer;
+                &:hover {
+                    background: linear-gradient(to bottom,#0d944a,#8cc63f);
+                }
+            }
+        }
+        .style-web {
+            display: block;
+            width: 80%;
+            margin: 0 auto 50px auto;
+            .list-style {
+                width: 100%;
+                display: flex;
+                align-items:stretch;
+                margin-top: 20px;
+                .outside {
+                    position: relative;
+                    background: #1a1a1a;
+                    display: flex;
+                    padding-top: 40px;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .marjor {
+                    width: 20%;
+                    margin-right: 2%;
+                }
+                .other {
+                    width: 78%;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    box-sizing: border-box;
+                    padding:40px 20px 30px 20px;
+                }
+                .caption {
+                    position: absolute;
+                    width: 100%;
+                    top:0;
+                    left: 0;
+                    text-align: center;
+                    color: #6bcff2;
+                    font-family: 'Consolas';
+                    font-size: 1rem;
+                    background: #000;
+                    padding: 10px 0;
+                }
+                .major-box {
+                    width: 60%;
+                    padding-bottom: 60%;
+                    background: url(../images/skilled.png)no-repeat;
+                    background-size: 100%;
+                    &.css {
+                        background-position-y: (1/6)*100%;
+                    }
+                    &.javascript {
+                        background-position-y: (2/6)*100%;
+                    }
+                    &.uiux {
+                        background-position-y: (3/6)*100%;
+                    }
+                    &.webGraphic {
+                        background-position-y: (4/6)*100%;
+                    }
+                    &.mediaEdit {
+                        background-position-y: (5/6)*100%;
+                    }
+                    &.assist {
+                        background-position-y: (6/6)*100%;
+                    }
+                }
+                .other-box {
+                    position: relative;
+                    width: 12%;
+                    padding-bottom: 12%;
+                    background:linear-gradient(45deg,#9a9a9a,#fff,#dadada);
+                    border-radius: 8px;
+                    box-sizing: border-box;
+                    border: 1px solid #fff;
+                    margin: 30px 2.3333% 0 2.3333%;
+                    transition: 0.3s;
+                    cursor: pointer;
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                    }
+                    &.photoshop {
+                        &:before {
+                            background: url(../images/skilled-uiux.png)no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                    &.illustrator {
+                        &:before {
+                            background: url(../images/skilled-uiux.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (1/2)*100%;
+                        }
+                    }
+                    &.rwd {
+                        &:before {
+                            background: url(../images/skilled-uiux.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: 100%;
+                        }
+                    }
+                    &.sass {
+                        &:before {
+                            background: url(../images/skilled-css.png)no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                    &.bootstrap {
+                        &:before {
+                            background: url(../images/skilled-css.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: 100%;
+                        }
+                    }
+                    &.svg {
+                        &:before {
+                            background: url(../images/skilled-webGraphic.png)no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                    &.canvas {
+                        &:before {
+                            background: url(../images/skilled-webGraphic.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: 100%;
+                        }
+                    }
+                    &.jquery {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                    &.ajax {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (1/7)*100%;
+                        }
+                    }
+                    &.vue {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (2/7)*100%;
+                        }
+                    }
+                    &.angular {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (3/7)*100%;
+                        }
+                    }
+                    &.threeJs {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (4/7)*100%;
+                        }
+                    }
+                    &.createJs {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (5/7)*100%;
+                        }
+                    }
+                    &.tweenmax {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (6/7)*100%;
+                        }
+                    }
+                    &.pixijs {
+                        &:before {
+                            background: url(../images/skilled-javascript.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (7/7)*100%;
+                        }
+                    }
+                    &.premiere {
+                        &:before {
+                            background: url(../images/skilled-mediaEdit.png)no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                    &.Aeffect {
+                        &:before {
+                            background: url(../images/skilled-mediaEdit.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (1/2)*100%;
+                        }
+                    }
+                    &.animate {
+                        &:before {
+                            background: url(../images/skilled-mediaEdit.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (2/2)*100%;
+                        }
+                    }
+                    &.terminal {
+                        &:before {
+                            background: url(../images/skilled-assist.png)no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                    &.vscode {
+                        &:before {
+                            background: url(../images/skilled-assist.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (1/4)*100%;
+                        }
+                    }
+                    &.npm {
+                        &:before {
+                            background: url(../images/skilled-assist.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (2/4)*100%;
+                        }
+                    }
+                    &.gitHub {
+                        &:before {
+                            background: url(../images/skilled-assist.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (3/4)*100%;
+                        }
+                    }
+                    &.gitLab {
+                        &:before {
+                            background: url(../images/skilled-assist.png)no-repeat;
+                            background-size: 100%;
+                            background-position-y: (4/4)*100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1200px){
+    .skilled {
+        .wrap {
+            min-width: 1024px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+    }
+}
+// porfolio
+.porfolio {
+    display: none;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #2a2d32;
+    box-sizing: border-box;
+    padding-top: 65px;
+    animation: fadeIn 1s;
+    overflow-x: hidden;
+    &.active {
+        display: block;
+    }
+    .wrap {
+        position: relative;
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+    }
+    .page-change {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .next , .prev{
+            color: #fff;
+            font-family: 'Consolas';
+            font-size: 1rem;
+            border-radius: 50px;
+            padding: 0.4rem 0.6rem;
+            background: linear-gradient(to top,#0d944a,#8cc63f);
+            box-shadow: 0 0 5px rgba(#000,0.3);
+        }
+    }
+    .title {
+        font-family: 'Consolas';
+        font-size: 1.2rem;
+        color: #8cc63f;
+        padding-top: 20px;
+    }
+    .subtitle {
+        font-family: 'Consolas';
+        font-size: 1.2rem;
+        color: #ff83c6;
+        padding-top: 20px;
+        &.type2 {
+            color: #ddca7e;
+        }
+    }
+    .games-link {
+        width: 100%;
+        margin-top: 10px;
+        .gamebox {
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-bottom: 20px;
+            animation: gameIn-A 0.8s;
+            &:nth-child(2n) {
+                animation: gameIn-B 0.8s;
+            }
+            .box {
+                width: 100%;
+                padding-bottom: 100%;
+            }
+            .text {
+                position: absolute;
+                width: 100%;
+                z-index: 2;
+                bottom: 0;
+                left: 0;
+                font-family: 'Consolas';
+                text-align: center;
+                font-style: italic;
+                font-size: 1rem;
+                color: #fff;
+                padding: 10px;
+                box-sizing: border-box;
+                box-shadow: 0 0 5px rgba(#000,0.6);
+            }
+            &.captain-america {
+                border: 2px solid #0263ae;
+                .box {
+                    background: url(../images/game-CA.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #0263ae;
+                }
+            }
+            &.spartan {
+                border: 2px solid #d96b30;
+                .box {
+                    background: url(../images/game-spartan.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #d96b30;
+                }
+            }
+            &.gundam {
+                border: 2px solid #223881;
+                .box {
+                    background: url(../images/game-gundam.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #223881;
+                }
+            }
+            &.ufo {
+                border: 2px solid #a467f3;
+                .box {
+                    background: url(../images/game-ufo.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #a467f3;
+                }
+            }
+            &.slot {
+                border: 2px solid #0f54b7;
+                .box {
+                    background: url(../images/game-slot.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #0f54b7;
+                }
+            }
+            &.page404 {
+                border: 2px solid #ef4a57;
+                .box {
+                    background: url(../images/game-page404.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #ef4a57;
+                }
+            }
+            &.snake {
+                border: 2px solid #0609ff;
+                .box {
+                    background: url(../images/game-snake.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #0609ff;
+                }
+            }
+            &.minions {
+                border: 2px solid #deb006;
+                .box {
+                    background: url(../images/game-minions.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #deb006;
+                }
+            }
+            &.soccer {
+                border: 2px solid #10c258;
+                .box {
+                    background: url(../images/game-soccer.png)no-repeat;
+                    background-size: 100%;
+                }
+                .text {
+                    background: #10c258;
+                }
+            }
+        }
+    }
+    .linkList {
+        width: 100%;
+        margin: 10px 0 50px 0;
+        .linkbar {
+            position: relative;
+            width: 100%;
+            background: #363b40;
+            color: #fff;
+            text-align: center;
+            font-family: 'Consolas';
+            font-size: 1rem;
+            padding: 20px 0;
+            margin-bottom: 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .btn {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                background: #2a2d32;
+                display: inline-block;
+                padding: 10px;
+            }
+        }
+    }
+}
+@media screen and (min-width:768px){
+    .porfolio {
+        padding-top: 95px;
+        .games-link {
+            display: flex;
+            flex-wrap: wrap;
+            .gamebox {
+                width: 50%;
+                margin: 0;
+            }
+        }
+        .linkList {
+            .linkbar {
+                padding: 30px 0;
+                margin-bottom: 15px;
+                .btn {
+                    right: 15px;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1024px){
+    .porfolio {
+        .games-link {
+            margin-top: 20px;
+            .gamebox {
+                width: 33.33333%;
+                cursor: pointer;
+                transition: 0.3s;
+                .box {
+                    opacity: 0.8;
+                    transition: 0.3s;
+                }
+                &:hover {
+                    transform: rotateX(-15deg)rotateZ(10deg)rotateY(20deg);
+                    z-index: 90;
+                    .box {
+                        opacity: 1;
+                        transform:scale(1.2);
+                    }
+                }
+            }
+        }
+        .linkList {
+            width: 50%;
+            margin: 30px auto 50px auto;
+            .linkbar {
+                transition: 0.3s;
+                .btn {
+                    transition: 0.3s;
+                }
+                &:hover {
+                    background: #8cc63f;
+                    .btn {
+                        background: #0d944a;
+                    }
+                }
+            }
+        }
+        .page-change {
+            .next , .prev{
+                cursor: pointer;
+                &:hover {
+                    background: linear-gradient(to bottom,#0d944a,#8cc63f);
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width:1200px){
+    .porfolio {
+        .wrap {
+            min-width: 1024px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+    }
+}

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="images/favicon.ico">
+    <title>steve resume</title>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" style="display:none">
+        <!-- <svg class="xxx"><use xlink:href="#svg-xxx"/></svg> -->
+        <symbol id="svg-hamburger" viewBox="0 0 16 12">
+            <rect width="16" height="1.14"/>
+            <rect y="5.43" width="16" height="1.14"/>
+            <rect y="10.86" width="16" height="1.14"/>
+        </symbol>
+        <symbol id="svg-triangle" viewBox="0 0 10 12">
+            <polygon points="10,6 0,0 0,12"/>
+        </symbol>
+        <symbol id="svg-gear" viewBox="0 0 18 18">
+            <path d="M14.07,16.17c-0.32,0-0.6-0.1-0.83-0.33c-0.16-0.16-0.32-0.32-0.48-0.48c-0.35-0.32-0.75-0.42-1.19-0.23
+            c-0.44,0.19-0.66,0.53-0.67,1.01c-0.01,0.24,0.01,0.48-0.01,0.73c-0.03,0.65-0.52,1.12-1.17,1.13c-0.45,0-0.91,0-1.36,0
+            c-0.67,0-1.17-0.5-1.18-1.16c-0.01-0.24,0.01-0.48,0-0.73c-0.02-0.47-0.26-0.8-0.68-0.97c-0.42-0.18-0.81-0.1-1.15,0.22
+            c-0.17,0.15-0.32,0.32-0.48,0.48c-0.49,0.47-1.2,0.46-1.68-0.01c-0.33-0.33-0.67-0.66-1-0.99c-0.49-0.49-0.49-1.18,0-1.67
+            c0.15-0.16,0.31-0.3,0.47-0.46c0.32-0.33,0.41-0.72,0.24-1.14c-0.17-0.43-0.5-0.67-0.97-0.69c-0.23-0.01-0.45,0-0.68,0
+            C0.47,10.83,0,10.36,0,9.59c0-0.43,0-0.86,0-1.29C0.01,7.7,0.44,7.22,1.05,7.16c0.26-0.02,0.52-0.02,0.77-0.02
+            c0.5,0,0.85-0.22,1.05-0.68C3.06,6.04,2.96,5.62,2.6,5.25C2.45,5.1,2.29,4.96,2.15,4.8c-0.44-0.47-0.45-1.14,0-1.6
+            C2.5,2.84,2.87,2.48,3.24,2.14C3.7,1.71,4.4,1.73,4.85,2.16c0.17,0.16,0.33,0.33,0.5,0.49C5.69,2.96,6.08,3.04,6.5,2.87
+            c0.43-0.18,0.67-0.5,0.68-0.97c0.01-0.23,0-0.45,0-0.68C7.2,0.48,7.69,0,8.42,0c0.42,0,0.84,0,1.27,0c0.7,0,1.19,0.48,1.22,1.18
+            c0.01,0.23,0,0.47,0,0.7c0.01,0.48,0.25,0.81,0.69,0.99c0.43,0.17,0.83,0.09,1.16-0.24c0.16-0.15,0.31-0.31,0.47-0.46
+            c0.48-0.46,1.19-0.46,1.67,0c0.35,0.34,0.69,0.68,1.03,1.02c0.47,0.48,0.46,1.16,0,1.64c-0.16,0.16-0.32,0.32-0.48,0.48
+            c-0.32,0.32-0.4,0.7-0.25,1.12c0.16,0.42,0.47,0.68,0.93,0.71c0.24,0.02,0.48,0.01,0.73,0.01c0.68,0.01,1.12,0.42,1.14,1.11
+            c0.02,0.49,0.02,0.98,0,1.48c-0.02,0.7-0.47,1.12-1.17,1.13c-0.23,0-0.45-0.01-0.68,0c-0.46,0.03-0.78,0.27-0.94,0.69
+            c-0.17,0.42-0.09,0.8,0.23,1.12c0.17,0.17,0.35,0.34,0.52,0.51c0.44,0.46,0.44,1.15,0,1.61c-0.35,0.36-0.7,0.71-1.06,1.06
+            C14.65,16.07,14.38,16.17,14.07,16.17z M5.3,8.99c0,2.08,1.67,3.76,3.74,3.76c2.07,0,3.76-1.68,3.76-3.75
+            c0-2.06-1.68-3.74-3.74-3.75C6.98,5.25,5.3,6.91,5.3,8.99z"/>
+        </symbol>
+    </svg>
+    <div id="vue-resume">
+        <div class="lodingPage" :class={active:isloading}>
+            <div class="lp-content">
+                <div class="title">STEVE RESUME</div>
+                <div class="loading flashBar">loading...</div>
+            </div>
+        </div>
+        <header class="header">
+            <div class="wrap">
+                <a class="title">STEVE RESUME</a>
+                <svg class="svg-hamburger" @click="headerAside = true"><use xlink:href="#svg-hamburger"/></svg>
+                <div class="for-web">
+                    <div class="text-style" :class={color:status.introduction} @click="headerToggle(true,false,false,false)">INTRODUCTION</div>
+                    <div class="text-style" :class={color:status.pInformation} @click="headerToggle(false,true,false,false)">P-INFORMATION</div>
+                    <div class="text-style" :class={color:status.skilled} @click="headerToggle(false,false,true,false)">SKILLED</div>
+                    <div class="text-style" :class={color:status.porfolio} @click="headerToggle(false,false,false,true)">PORFOLIO</div>
+                    <div class="text-style">
+                        <a href="https://github.com/steve19890707" target="_blank" class="githubIcon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="aside" :class={active:headerAside}>
+                <div class="aside-content">
+                    <div class="aside-listStyle" :class={color:status.introduction} @click="headerToggle(true,false,false,false)">
+                        <svg class="svg-gear"><use xlink:href="#svg-gear"/></svg>
+                        <span class="text">INTRODUCTION</span>
+                    </div>
+                    <div class="aside-listStyle" :class={color:status.pInformation} @click="headerToggle(false,true,false,false)">
+                        <svg class="svg-gear"><use xlink:href="#svg-gear"/></svg>
+                        <span class="text">P-INFORMATION</span>
+                    </div>
+                    <div class="aside-listStyle" :class={color:status.skilled} @click="headerToggle(false,false,true,false)">
+                        <svg class="svg-gear"><use xlink:href="#svg-gear"/></svg>
+                        <span class="text">SKILLED</span>
+                    </div>
+                    <div class="aside-listStyle" :class={color:status.porfolio} @click="headerToggle(false,false,false,true)">
+                        <svg class="svg-gear"><use xlink:href="#svg-gear"/></svg>
+                        <span class="text">PORFOLIO</span>
+                    </div>
+                    <div class="aside-listStyle">
+                        <a href="https://github.com/steve19890707" target="_blank" class="github">
+                            <div class="icon"></div>
+                            <div class="text">github link</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="background" @click="headerAside = false"></div>
+            </div>
+        </header>
+        <!-- introduction -->
+        <main class="introduction" :class="{active:status.introduction}">
+            <div class="wrap">
+                <div class="next" @click="NextMove(false,true,false,false)">
+                    next-></div>
+                <div class="content">
+                    <div class="article">
+                        <svg class="svg-triangle"><use xlink:href="#svg-triangle"/></svg>
+                        <span>&ltarticle&gt 自傳<span class="flashBar">|</span></span>
+                    </div>
+                    <div class="section">
+                        <p class="tag">&ltsection&gt 關於我</p>
+                        <p class="text">Hi！你好，我是steve，紹宇。自104年畢業於國立臺中科技大學碩士班的畢業生，105年前往美國University of Arizona CESL進修，目前已投入社會的職場四年，不斷的充實自我，努力學習。</p>
+                        <p class="tag">&lt/section&gt</p>
+                    </div>
+                    <div class="section">
+                        <p class="tag">&ltsection&gt 個人特質</p>
+                        <p class="text">我的性格活潑外向、樂觀進取，喜好廣結善緣，並且與他人處事融洽、 和諧無爭。因此這樣的特質，時常讓我在團隊中擔任領頭羊的角色，一同與團隊完成共識。</p>
+                        <p class="tag">&lt/section&gt</p>
+                    </div>
+                    <div class="section">
+                        <p class="tag">&ltsection&gt 學習經歷</p>
+                        <p class="text">過去的我曾經學習過很多不同領域的知識。起初我在高中時期曾學習園藝造景，到了大學時期則學習生物科技。然而熱愛藝術創作的我，於碩士班的期間選擇了商業設計。然而在這些學習階段中，我也曾多次參與過學校的社團活動。從高中到大學，擔任過社團幹部，並且舉辦年度成果展、校園迎新，體康活動研習營等等。到了碩士班，基於自己並非本科學生的原因，我將這兩年的學習時間，積極投入於設計領域之中，且多次參與設計相關的比賽，而有幸也能在幾次的賽事中獲得殊榮。</p>
+                        <p class="tag">&lt/section&gt</p>
+                    </div>
+                    <div class="section">
+                        <p class="tag">&ltsection&gt 工作經歷</p>
+                        <p class="text">自碩士班進修的期間以來，我就開始學習承接商業設計的專案，好讓自己能在畢業前培養工作能力。投入職場的這段時間，建立了平面、多媒體、使用者介面設計及前端工程等之職務專長。更從團隊中學習合作與溝通，並以不同角度思考事物，建立出更好的工作思維能力。</p>
+                        <p class="tag">&lt/section&gt</p>
+                    </div>
+                    <div class="section">
+                        <p class="tag">&ltsection&gt 興趣嗜好</p>
+                        <p class="text">個性活潑且熱愛藝術創作的我，舞蹈與繪畫是我生活中不可或缺的興趣。因此我也時常出沒舞蹈或繪畫的活動，體會不同族群的文化與習性，使得自己對各方面的思考更有彈性。此愛我也喜歡旅行，在我結束第一份工作後的夏天，為了給自己增廣見聞的機會，於是安排到了美國的亞利桑那州大學語言學校進修。從中除了外語的學習也與來自各國的同學交流，體驗並認識到了許許多多不曾了解過的文化與知識，這將會是我人生中難能可貴的學習經歷。</p>
+                        <p class="tag">&lt/section&gt</p>
+                    </div>
+                    <div class="article end">
+                        <span>&lt/article&gt</span>
+                        <svg class="svg-triangle"><use xlink:href="#svg-triangle"/></svg>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- p-information -->
+        <main class="p-information" :class={active:status.pInformation}>
+            <div class="wrap">
+                <div class="page-change">
+                    <div class="prev" @click="NextMove(true,false,false,false)"><-prev</div>
+                    <div class="next" @click="NextMove(false,false,true,false)">next-></div>
+                </div>
+                <div class="title">&lt!-- P-INFORMATION --&gt</div>
+                <div class="info-content">
+                    <div class="list-style">
+                        <span class="gray">&lt</span>
+                        <span class="blue">name</span>
+                        <span class="white">=</span>
+                        <span class="orange">"<span class="mandarin">劉紹宇</span> STEVE"</span>
+                        <span class="gray">/&gt</span>
+                    </div>
+                    <div class="list-style">
+                        <span class="gray">&lt</span>
+                        <span class="blue">birthday</span>
+                        <span class="white">=</span>
+                        <span class="orange">"1989/07/07"</span>
+                        <span class="gray">/&gt</span>
+                    </div>
+                    <div class="list-style">
+                        <span class="gray">&lt</span>
+                        <span class="blue">gender</span>
+                        <span class="white">=</span>
+                        <span class="orange">"male"</span>
+                        <span class="gray">/&gt</span>
+                    </div>
+                    <div class="list-style">
+                        <span class="gray">&lt</span>
+                        <span class="blue">Email</span>
+                        <span class="white">=</span>
+                        <span class="orange">"firo0707@gmail.com"</span>
+                        <span class="gray">/&gt</span>
+                    </div>
+                    <div class="list-style">
+                        <span class="gray">&lt</span>
+                        <span class="blue">phone</span>
+                        <span class="white">=</span>
+                        <span class="orange">"(+886)0910323635"</span>
+                        <span class="gray">/&gt</span>
+                    </div>
+                    <div class="list-style">
+                        <span class="gray">&lt</span>
+                        <span class="blue">LINE</span>
+                        <span class="white">=</span>
+                        <span class="orange">"stboog"</span>
+                        <span class="gray">/&gt</span>
+                    </div>
+                    <div class="selfie-web"></div>
+                </div>
+                <div class="info-content2" :class="{active:pInfo.graduate}">
+                    <div class="two-title click" @click="pInfo.graduate = !pInfo.graduate">
+                        <span class="gray">+</span>
+                        <span class="pink">.graduate</span>
+                        <span class="gray">{<span class="etc">...</span></span>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">highschool:</span>
+                        <span class="pink mandarin">"國立大湖高級農工職業學校"</span>
+                        <span class="gray">;</span>
+                        <a href="https://www.thvs.mlc.edu.tw/home" target="_blank">&lt!-- visit to website --&gt</a>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">university:</span>
+                        <span class="pink mandarin">"弘光科技大學 生物科技系"</span>
+                        <span class="gray">;</span>
+                        <a href="https://www.hk.edu.tw/main.php" target="_blank">&lt!-- visit to website --&gt</a>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">master:</span>
+                        <span class="pink mandarin">"國立臺中科技大學 商業設計系"</span>
+                        <span class="gray">;</span>
+                        <a href="https://www.nutc.edu.tw/bin/home.php" target="_blank">&lt!-- visit to website --&gt</a>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">other:</span>
+                        <span class="pink">"The University of Arezona CESL"</span>
+                        <span class="gray">;</span>
+                        <a href="https://www.arizona.edu/" target="_blank">&lt!-- visit to website --&gt</a>
+                    </div>
+                    <div class="two-title">
+                        <span class="gray">}</span>
+                    </div>
+                </div>
+                <div class="info-content2" :class="{active:pInfo.experience}">
+                    <div class="two-title click" @click="pInfo.experience = !pInfo.experience">
+                        <span class="gray">+</span>
+                        <span class="yellow">.experience</span>
+                        <span class="gray">{<span class="etc">...</span></span>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">2015/12-2016/04:</span>
+                        <span class="yellow mandarin">"業務輔導員/career就業情報網"</span>
+                        <span class="gray">;</span>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">2016/05-2017/11:</span>
+                        <span class="yellow mandarin">"美術行銷/臥虎資訊股份有限公司"</span>
+                        <span class="gray">;</span>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">2018/03-2019/02:</span>
+                        <span class="yellow mandarin">"網頁前端工程師/格子科技股份有限公司"</span>
+                        <span class="gray">;</span>
+                    </div>
+                    <div class="two-text">
+                        <span class="blue">2019/02-2019/09:</span>
+                        <span class="yellow mandarin">"網頁前端工程師/跳跳前端製作股份有限公司"</span>
+                        <span class="gray">;</span>
+                    </div>
+                    <div class="two-title">
+                        <span class="gray">}</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- skilled -->
+        <main class="skilled" :class={active:status.skilled}>
+            <div class="wrap">
+                <div class="page-change">
+                    <div class="prev" @click="NextMove(false,true,false,false)"><-prev</div>
+                    <div class="next" @click="NextMove(false,false,false,true)">next-></div>
+                </div>
+                <div class="title">&lt!-- SKILLED --&gt</div>
+                <div class="style-mobile">
+                    <div v-for="item in skilled" class="list-style">
+                        <div class="box" :class="item.class" @click="skilledOpen(item.index)"></div>
+                        <div class="text">{{ item.name }}</div>
+                    </div>
+                </div>
+                <div class="style-web">
+                    <div v-for="item in skilled" class="list-style">
+                        <div class="outside marjor">
+                            <div class="caption">{{ item.name }}</div>
+                            <div class="major-box" :class="item.class"></div>
+                        </div>
+                        <div class="outside other">
+                            <div class="caption">framework / tools / other</div>
+                            <a class="other-box" v-for="item2 in item.list" :class="item2.class" v-bind:href="item2.link" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- css -->
+            <div class="inside-content" :class={active:skilled[1].status}>
+                <div class="container">
+                    <div class="title-bar"><div class="close" @click="sklilledClose"></div>css</div>
+                    <div class="inside-all">
+                        <div v-for="item in skilled[1].list" class="inside-list">
+                            <a class="box" :class="item.class" v-bind:href="item.link" target="_blank"></a>
+                            <div class="text">{{ item.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- js -->
+            <div class="inside-content" :class={active:skilled[2].status}>
+                <div class="container">
+                    <div class="title-bar"><div class="close" @click="sklilledClose"></div>javascript</div>
+                    <div class="inside-all">
+                        <div v-for="item in skilled[2].list" class="inside-list">
+                            <a class="box" :class="item.class" v-bind:href="item.link" target="_blank"></a>
+                            <div class="text">{{ item.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- uiux -->
+            <div class="inside-content" :class={active:skilled[3].status}>
+                <div class="container">
+                    <div class="title-bar"><div class="close" @click="sklilledClose"></div>UI/UX</div>
+                    <div class="inside-all">
+                        <div v-for="item in skilled[3].list" class="inside-list">
+                            <a class="box" :class="item.class" v-bind:href="item.link" target="_blank"></a>
+                            <div class="text">{{ item.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- webGraphic -->
+            <div class="inside-content" :class={active:skilled[4].status}>
+                <div class="container">
+                    <div class="title-bar"><div class="close" @click="sklilledClose"></div>web graphic</div>
+                    <div class="inside-all">
+                        <div v-for="item in skilled[4].list" class="inside-list">
+                            <a class="box" :class="item.class" v-bind:href="item.link" target="_blank"></a>
+                            <div class="text">{{ item.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mediaEdit -->
+            <div class="inside-content" :class={active:skilled[5].status}>
+                <div class="container">
+                    <div class="title-bar"><div class="close" @click="sklilledClose"></div>media edit</div>
+                    <div class="inside-all">
+                        <div v-for="item in skilled[5].list" class="inside-list">
+                            <a class="box" :class="item.class" v-bind:href="item.link" target="_blank"></a>
+                            <div class="text">{{ item.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- assist -->
+            <div class="inside-content" :class={active:skilled[6].status}>
+                <div class="container">
+                    <div class="title-bar"><div class="close" @click="sklilledClose"></div>assist</div>
+                    <div class="inside-all">
+                        <div v-for="item in skilled[6].list" class="inside-list">
+                            <a class="box" :class="item.class" v-bind:href="item.link" target="_blank"></a>
+                            <div class="text">{{ item.name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- porfolio -->
+        <main class="porfolio" :class={active:status.porfolio}>
+            <div class="wrap">
+                <div class="page-change">
+                    <div class="prev" @click="NextMove(false,false,true,false)"><-prev</div>
+                    <div class="next" @click="NextMove(true,false,false,false)">next-></div>
+                </div>
+                <div class="title">&lt!-- PORFOLIO --&gt</div>
+                <div class="subtitle">&lt!-- something funny --&gt</div>
+                <div class="games-link">
+                    <a v-for="item in porfolio" class="gamebox" :class="item.class" v-bind:href="item.link" target="_blank">
+                        <div class="box"></div>
+                        <div class="text">{{ item.name }}</div>
+                    </a>
+                </div>
+                <div class="subtitle type2">&lt!-- all --&gt</div>
+                <div class="linkList">
+                    <a href="https://drive.google.com/drive/folders/1PdygpWgOk4y4-XuPZ4jhS5OTOzkO_Otx" target="_blank" class="linkbar">graphic design
+                        <div class="btn">check</div>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1HG36Uj3VMldwDzJec8IrJK8V90VQ1gHt" target="_blank" class="linkbar">web design
+                        <div class="btn">check</div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/javascript/main.js"></script>
+</body>
+</html>
